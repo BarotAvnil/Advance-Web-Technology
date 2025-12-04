@@ -61,6 +61,10 @@ export default function Home() {
     //     </div>
     //   </main>
     // </div>
-    <h1>Hello World</h1>
+    <div>
+      <h1>Hello World</h1>
+      <h2>AB</h2>
+    </div>
+
   );
 }
