@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
+import dynamic from "next/dynamic";
+
+// ⬅️ Load NavbarShell as client-only
+const NavbarShell = dynamic(() => import("./navbarShell"), {
+  
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-gray-900">
       <head>
         <link
           rel="stylesheet"
@@ -35,22 +40,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <nav className="bg-dark p-2">
-          <Link href={"/"} className="text-white text-decoration-none me-3">
-            Home
-          </Link>
-          <Link href={"/about"} className="text-white text-decoration-none me-3">
-            About
-          </Link>
-          <Link
-            href={"/contact"}
-            className="text-white text-decoration-none"
-          >
-            Contact
-          </Link>
-        </nav>
-
-        {children}
+        {/* Navbar + page shell (client-only) */}
+        <NavbarShell>{children}</NavbarShell>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
       </body>
